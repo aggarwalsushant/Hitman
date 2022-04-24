@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Linq;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Hitman
 {
-    internal enum StringMatch
-    {
-        Contains, Exact, StartsWith, EndsWith
-    }
-
     public partial class Form1 : Form
     {
+        #region fields
+        private bool timerExpired = false;
+        private ProcessKiller killer = new ProcessKiller();
+        #endregion
+
         public Form1()
         {
             InitializeComponent();
@@ -19,72 +18,54 @@ namespace Hitman
 
         private void BtnKill_Click(object sender, System.EventArgs e)
         {
-            if (rbContains.Checked)
+            timerExpired = false;
+            if (chkPersist.Checked)
             {
-                KillProcess(StringMatch.Contains);
-            }
-            else if (rbExact.Checked)
-            {
-                KillProcess(StringMatch.Exact);
-            }
-            else if (rbStartsWith.Checked)
-            {
-                KillProcess(StringMatch.StartsWith);
+                //lblStatus.Text = string.Empty;
+                btnKill.BackColor = Color.Gray;
+                btnKill.Enabled = false;
+                var timer = new Timer() { Interval = 15 * 1000 };
+                timer.Tick += Timer_Tick;
+                timer.Start();
+
+                do
+                {
+                    KillProcessOnMatch();
+                } while (killer.ProcessCount > 0 && !timerExpired);
+
+                timer.Stop();
+                timerExpired = false;
+                btnKill.Enabled = true;
+                btnKill.BackColor = Color.Orange;
             }
             else
             {
-                KillProcess(StringMatch.EndsWith);
+                KillProcessOnMatch();
             }
         }
 
-        private void KillProcess(StringMatch match)
+        private void Timer_Tick(object sender, EventArgs e)
         {
-            var count = 0;
-            try
+            timerExpired = true;
+        }
+
+        private void KillProcessOnMatch()
+        {
+            if (rbContains.Checked)
             {
-                var allProcesses = Process.GetProcesses();
-                lblStatus.Text = string.Empty;
-
-                switch (match)
-                {
-                    case StringMatch.Contains:
-                        var qualifyingProcesses = allProcesses
-                         .Where(x => x.ProcessName.IndexOf(txtProcessBox.Text.Trim(), StringComparison.OrdinalIgnoreCase) >= 0)
-                         .ToList();
-                        count = qualifyingProcesses.Count;
-                        qualifyingProcesses.ForEach(x => x.Kill());
-                        break;
-
-                    case StringMatch.Exact:
-                        qualifyingProcesses = allProcesses
-                         .Where(x => x.ProcessName.Equals(txtProcessBox.Text.Trim(), StringComparison.OrdinalIgnoreCase))
-                         .ToList();
-                        count = qualifyingProcesses.Count;
-                        qualifyingProcesses.ForEach(x => x.Kill());
-                        break;
-
-                    case StringMatch.StartsWith:
-                        qualifyingProcesses = allProcesses
-                         .Where(x => x.ProcessName.StartsWith(txtProcessBox.Text.Trim(), StringComparison.OrdinalIgnoreCase))
-                         .ToList();
-                        count = qualifyingProcesses.Count;
-                        qualifyingProcesses.ForEach(x => x.Kill());
-                        break;
-
-                    case StringMatch.EndsWith:
-                        qualifyingProcesses = allProcesses
-                         .Where(x => x.ProcessName.EndsWith(txtProcessBox.Text.Trim(), StringComparison.OrdinalIgnoreCase))
-                         .ToList();
-                        count = qualifyingProcesses.Count;
-                        qualifyingProcesses.ForEach(x => x.Kill());
-                        break;
-                }
-
-                lblStatus.Text = count == 0 ? "No processes. All okay!" : $"{count} processes killed.";
+                lblStatus.Text = killer.KillProcess(StringMatch.Contains, txtProcessBox.Text.Trim());
             }
-            catch (System.Exception)
+            else if (rbExact.Checked)
             {
-                lblStatus.Text = $"Couldn't kill processes. {count} remain. ";
+                lblStatus.Text = killer.KillProcess(StringMatch.Exact, txtProcessBox.Text.Trim());
+            }
+            else if (rbStartsWith.Checked)
+            {
+                lblStatus.Text = killer.KillProcess(StringMatch.StartsWith, txtProcessBox.Text.Trim());
+            }
+            else
+            {
+                lblStatus.Text = killer.KillProcess(StringMatch.EndsWith, txtProcessBox.Text.Trim());
             }
         }
     }

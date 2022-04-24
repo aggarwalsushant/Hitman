@@ -36,16 +36,17 @@
             this.gbOptions = new System.Windows.Forms.GroupBox();
             this.btnKill = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.chkPersist = new System.Windows.Forms.CheckBox();
             this.gbOptions.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtProcessBox
             // 
             this.txtProcessBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProcessBox.Location = new System.Drawing.Point(59, 24);
-            this.txtProcessBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtProcessBox.Location = new System.Drawing.Point(79, 30);
+            this.txtProcessBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtProcessBox.Name = "txtProcessBox";
-            this.txtProcessBox.Size = new System.Drawing.Size(208, 32);
+            this.txtProcessBox.Size = new System.Drawing.Size(276, 38);
             this.txtProcessBox.TabIndex = 0;
             // 
             // rbContains
@@ -53,10 +54,10 @@
             this.rbContains.AutoSize = true;
             this.rbContains.Checked = true;
             this.rbContains.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbContains.Location = new System.Drawing.Point(16, 24);
-            this.rbContains.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbContains.Location = new System.Drawing.Point(21, 30);
+            this.rbContains.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbContains.Name = "rbContains";
-            this.rbContains.Size = new System.Drawing.Size(81, 21);
+            this.rbContains.Size = new System.Drawing.Size(96, 24);
             this.rbContains.TabIndex = 2;
             this.rbContains.TabStop = true;
             this.rbContains.Text = "Contains";
@@ -66,10 +67,10 @@
             // 
             this.rbExact.AutoSize = true;
             this.rbExact.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbExact.Location = new System.Drawing.Point(114, 23);
-            this.rbExact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbExact.Location = new System.Drawing.Point(152, 28);
+            this.rbExact.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbExact.Name = "rbExact";
-            this.rbExact.Size = new System.Drawing.Size(60, 21);
+            this.rbExact.Size = new System.Drawing.Size(72, 24);
             this.rbExact.TabIndex = 3;
             this.rbExact.Text = "Exact";
             this.rbExact.UseVisualStyleBackColor = true;
@@ -78,10 +79,10 @@
             // 
             this.rbStartsWith.AutoSize = true;
             this.rbStartsWith.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbStartsWith.Location = new System.Drawing.Point(16, 66);
-            this.rbStartsWith.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbStartsWith.Location = new System.Drawing.Point(21, 81);
+            this.rbStartsWith.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbStartsWith.Name = "rbStartsWith";
-            this.rbStartsWith.Size = new System.Drawing.Size(91, 21);
+            this.rbStartsWith.Size = new System.Drawing.Size(110, 24);
             this.rbStartsWith.TabIndex = 4;
             this.rbStartsWith.Text = "Starts with";
             this.rbStartsWith.UseVisualStyleBackColor = true;
@@ -90,10 +91,10 @@
             // 
             this.rbEndsWith.AutoSize = true;
             this.rbEndsWith.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbEndsWith.Location = new System.Drawing.Point(114, 66);
-            this.rbEndsWith.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbEndsWith.Location = new System.Drawing.Point(152, 81);
+            this.rbEndsWith.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbEndsWith.Name = "rbEndsWith";
-            this.rbEndsWith.Size = new System.Drawing.Size(86, 21);
+            this.rbEndsWith.Size = new System.Drawing.Size(103, 24);
             this.rbEndsWith.TabIndex = 5;
             this.rbEndsWith.Text = "Ends with";
             this.rbEndsWith.UseVisualStyleBackColor = true;
@@ -104,11 +105,11 @@
             this.gbOptions.Controls.Add(this.rbContains);
             this.gbOptions.Controls.Add(this.rbStartsWith);
             this.gbOptions.Controls.Add(this.rbExact);
-            this.gbOptions.Location = new System.Drawing.Point(59, 77);
-            this.gbOptions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbOptions.Location = new System.Drawing.Point(79, 95);
+            this.gbOptions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbOptions.Name = "gbOptions";
-            this.gbOptions.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.gbOptions.Size = new System.Drawing.Size(207, 101);
+            this.gbOptions.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbOptions.Size = new System.Drawing.Size(276, 124);
             this.gbOptions.TabIndex = 5;
             this.gbOptions.TabStop = false;
             this.gbOptions.Text = "Options";
@@ -117,10 +118,10 @@
             // 
             this.btnKill.BackColor = System.Drawing.Color.Orange;
             this.btnKill.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKill.Location = new System.Drawing.Point(93, 195);
-            this.btnKill.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnKill.Location = new System.Drawing.Point(123, 285);
+            this.btnKill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnKill.Name = "btnKill";
-            this.btnKill.Size = new System.Drawing.Size(151, 71);
+            this.btnKill.Size = new System.Drawing.Size(201, 87);
             this.btnKill.TabIndex = 1;
             this.btnKill.Text = "Kill It!!";
             this.btnKill.UseVisualStyleBackColor = false;
@@ -130,25 +131,38 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(56, 282);
-            this.lblStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblStatus.Location = new System.Drawing.Point(74, 401);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(0, 20);
+            this.lblStatus.Size = new System.Drawing.Size(0, 25);
             this.lblStatus.TabIndex = 6;
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // chkPersist
+            // 
+            this.chkPersist.AutoSize = true;
+            this.chkPersist.Checked = true;
+            this.chkPersist.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkPersist.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPersist.Location = new System.Drawing.Point(176, 235);
+            this.chkPersist.Name = "chkPersist";
+            this.chkPersist.Size = new System.Drawing.Size(84, 24);
+            this.chkPersist.TabIndex = 7;
+            this.chkPersist.Text = "Persist";
+            this.chkPersist.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(328, 325);
+            this.ClientSize = new System.Drawing.Size(437, 456);
+            this.Controls.Add(this.chkPersist);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnKill);
             this.Controls.Add(this.gbOptions);
             this.Controls.Add(this.txtProcessBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Hitman | Sushant Aggarwal";
@@ -169,6 +183,7 @@
         private System.Windows.Forms.GroupBox gbOptions;
         private System.Windows.Forms.Button btnKill;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.CheckBox chkPersist;
     }
 }
 
