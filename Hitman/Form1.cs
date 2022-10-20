@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace Hitman
@@ -7,8 +6,8 @@ namespace Hitman
     public partial class Form1 : Form
     {
         #region fields
-        private bool timerExpired = false;
-        private ProcessKiller killer = new ProcessKiller();
+        private readonly ProcessKiller killer = new ProcessKiller();
+        private readonly ICountdownTimer timer = new CountdownTimer(seconds: 15);
         #endregion
 
         public Form1()
@@ -18,23 +17,21 @@ namespace Hitman
 
         private void BtnKill_Click(object sender, System.EventArgs e)
         {
-            timerExpired = false;
+            timer.Reset();
+
             if (chkPersist.Checked)
             {
-                //lblStatus.Text = string.Empty;
                 btnKill.BackColor = Color.Gray;
                 btnKill.Enabled = false;
-                var timer = new Timer() { Interval = 15 * 1000 };
-                timer.Tick += Timer_Tick;
+
                 timer.Start();
 
                 do
                 {
                     KillProcessOnMatch();
-                } while (killer.ProcessCount > 0 && !timerExpired);
+                } while (killer.ProcessCount > 0 && !timer.IsExpired);
 
-                timer.Stop();
-                timerExpired = false;
+                timer.Reset();
                 btnKill.Enabled = true;
                 btnKill.BackColor = Color.Orange;
             }
@@ -42,11 +39,6 @@ namespace Hitman
             {
                 KillProcessOnMatch();
             }
-        }
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            timerExpired = true;
         }
 
         private void KillProcessOnMatch()
@@ -67,6 +59,16 @@ namespace Hitman
             {
                 lblStatus.Text = killer.KillProcess(StringMatch.EndsWith, txtProcessBox.Text.Trim());
             }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                WindowState = FormWindowState.Minimized;
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

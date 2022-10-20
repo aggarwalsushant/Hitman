@@ -19,7 +19,6 @@ namespace Hitman
             try
             {
                 var allProcesses = Process.GetProcesses();
-                //lblStatus.Text = string.Empty;
 
                 switch (match)
                 {
@@ -58,7 +57,7 @@ namespace Hitman
 
                 return ProcessCount == 0 ? "No processes. All okay!" : $"{ProcessCount} processes killed.";
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return $"Couldn't kill processes. {ProcessCount} remain. ";
             }
